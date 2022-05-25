@@ -18,14 +18,14 @@ $mail = new PHPMailer();
 $mail->IsSMTP();
 
 //Configuracion servidor mail
-$mail->From = "user06.pp@gmail.com"; //remitente
+$mail->From = "cgonzalez.santos1995@gmail.com"; //remitente
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'tls'; //seguridad
 $mail->SMTPDebug = 0;
 //$mail->Port = 25; 
 $mail->Host = "smtp.gmail.com"; // servidor smtp
 $mail->Port = 587; //puerto
-$mail->Username ='user06.pp@gmail.com'; //nombre usuario
+$mail->Username ='cgonzalez.santos1995@gmail.com'; //nombre usuario
 $mail->Password = '&wqFCk3c'; //contraseña
 $mail->IsHTML(true);
 //Agregar destinatario

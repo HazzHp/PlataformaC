@@ -6,6 +6,7 @@ date_default_timezone_set('America/Mexico_City');
 require 'MailPHP/class.phpmailer.php';
 require 'MailPHP/class.smtp.php';
 
+$liga="http://localhost/PlataformaC/CambiarPassword.php?datos=".base64_encode($_POST['txt_email']);
 //$liga="http://localhost:8080/pruebaPaltaforma/CambiarPassword.php?datos=".base64_encode($_POST['txt_email']);
 
 $codigoAcceso =  rand(10000, 99999);
@@ -18,18 +19,18 @@ $mail = new PHPMailer();
 $mail->IsSMTP();
 
 //Configuracion servidor mail
-$mail->From = "cgonzalez.santos1995@gmail.com"; //remitente
+$mail->From = "user06.pp@gmail.com"; //remitente
 $mail->SMTPAuth = true;
 $mail->SMTPSecure = 'tls'; //seguridad
-$mail->SMTPDebug = 0;
+$mail->SMTPDebug = 2;
 //$mail->Port = 25; 
 $mail->Host = "smtp.gmail.com"; // servidor smtp
 $mail->Port = 587; //puerto
-$mail->Username ='cgonzalez.santos1995@gmail.com'; //nombre usuario
-$mail->Password = '&wqFCk3c'; //contraseña
+$mail->Username ='user06.pp@gmail.com'; //nombre usuario
+$mail->Password = 'Usuario06PP'; //contraseña
 $mail->IsHTML(true);
 //Agregar destinatario
-$mail->AddAddress($_POST['txt_email']);
+//$mail->AddAddress($_POST['txt_email']);
 $mail->Subject = "Cambio de contraseña";
 $mail->Body = "Utiliza el siguiente codigo para poder actualizar tu contraseña de manera correcta <br>
 ".$codigoAcceso."' <br> tienes hasta las ".$fechaVigencia." para usar el codigo
@@ -43,10 +44,12 @@ if ($mail->Send()) {
 	$query->bindParam(":vigencia",$fechaVigencia);
 	$query->execute();
 
-    header("location:cambiarPassword.php");
+   header("location:cambiarPassword.php");
 } else {
   echo'<script type="text/javascript">
          alert("NO ENVIADO, intentar de nuevo");
+         
       </script>';
+      //header("location:actualizaPassword.php");
 }
 ?>
